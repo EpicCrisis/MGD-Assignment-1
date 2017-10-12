@@ -4,4 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6b36dbd27dcd05946bb2c3d681db9f5f
+  - enabled: 1
+    path: Assets/Scenes/FPSControllerScene.unity
+    guid: 99934fa26e93aea4bb94ad330153d046
+  - enabled: 1
+    path: Assets/Scenes/TPSControllerScene.unity
+    guid: 88c8754a79bc39e4cafb27dee992a32c

@@ -52,9 +52,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: BGM
+    clip: {fileID: 8300000, guid: d77474c1aeb7baf4db4aa7627c4ab436, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Gunshot
+    clip: {fileID: 8300000, guid: 1af5b6b32dbabc84a895324b402377a6, type: 3}
+    volume: 0.8
+    pitch: 1.1
+    loop: 0
+    source: {fileID: 0}
+  - name: BloodEffect
+    clip: {fileID: 8300000, guid: 85e2079723fa198429279c215bb2d2ab, type: 3}
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Explosion
+    clip: {fileID: 8300000, guid: 52bc133452498304496f70cbe364c1f8, type: 3}
+    volume: 1
+    pitch: 1.5
     loop: 0
     source: {fileID: 0}

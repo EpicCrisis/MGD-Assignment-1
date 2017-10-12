@@ -13,6 +13,7 @@ public class GrenadeScript : MonoBehaviour
 	public float power = 10.0f;
 	public float radius = 100.0f;
 	public float upForce = 1.0f;
+	public float explodeDamage = 25.0f;
 
 	void Awake ()
 	{
@@ -56,8 +57,14 @@ public class GrenadeScript : MonoBehaviour
 			
 			Rigidbody rb = hit.GetComponent<Rigidbody> ();
 
+			TargetScript target = hit.GetComponent<TargetScript> ();
+
 			if (rb != null) {
 				rb.AddExplosionForce (power, explosionPosition, radius, upForce, ForceMode.Impulse);
+			}
+
+			if (target != null) {
+				target.TakeDamage (explodeDamage);
 			}
 		}
 
