@@ -13,6 +13,8 @@ public class GameSettings : MonoBehaviour
 
 	public Image brightnessMask;
 
+	public bool isPaused = false;
+
 	void Awake ()
 	{
 		if (instance == null) {
@@ -46,5 +48,18 @@ public class GameSettings : MonoBehaviour
 	{
 		brightness = value;
 		brightnessMask.color = new Color (0f, 0f, 0f, 1.0f - brightness);
+	}
+
+	public void PauseGame (bool boolean)
+	{
+		isPaused = boolean;
+
+		if (boolean) {
+			Time.timeScale = 0f;
+			boolean = false;
+		} else {
+			Time.timeScale = 1f;
+			boolean = true;
+		}
 	}
 }

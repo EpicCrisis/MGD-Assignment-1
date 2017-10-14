@@ -7,16 +7,9 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
 
-	public string FPSLevel;
-	public string TPSLevel;
-
+	public string[] levels;
 	public GameObject[] menuPanels;
 	public Slider[] sliders;
-
-	void Awake ()
-	{
-		
-	}
 
 	void Start ()
 	{
@@ -30,14 +23,9 @@ public class MainMenuManager : MonoBehaviour
 		
 	}
 
-	public void StartFPSScene ()
+	public void StartScene (int level)
 	{
-		SceneManager.LoadScene (FPSLevel);
-	}
-
-	public void StartTPSScene ()
-	{
-		SceneManager.LoadScene (TPSLevel);
+		SceneManager.LoadScene (levels [level]);
 	}
 
 	//Finds the menu enum in the public list, then proceed to set active.//
@@ -79,5 +67,10 @@ public class MainMenuManager : MonoBehaviour
 	public void ChangeBrightness (Slider sliderObject)
 	{
 		GameSettings.instance.SetBrightness (sliderObject.value);
+	}
+
+	public void PauseGame (bool boolean)
+	{
+		GameSettings.instance.PauseGame (boolean);
 	}
 }
