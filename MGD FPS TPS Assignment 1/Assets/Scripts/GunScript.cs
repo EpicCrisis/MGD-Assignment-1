@@ -26,7 +26,11 @@ public class GunScript : MonoBehaviour
 
 	void Update ()
 	{
-		CheckEnemyTarget ();
+		if (!GameSettings.instance.isPaused) {
+
+			CheckEnemyTarget ();
+
+		}
 	}
 
 	void CheckEnemyTarget ()
@@ -67,18 +71,21 @@ public class GunScript : MonoBehaviour
 
 		} else {
 			
-//			Debug.LogWarning ("Nothing");
+			//Debug.LogWarning ("Nothing");
 			return;
 		}
 
-//		if (hit.transform.gameObject.tag == "Enemy") {
-//			
-//			Debug.Log ("Hit The Enemy");
-//
-//		} else {
-//			
-//			Debug.LogWarning ("No Enemy Detected");
-//			return;
-//		}
+		/*
+		if (hit.transform.gameObject.tag == "Enemy") {
+			
+			Debug.Log ("Hit The Enemy");
+
+		} else {
+			
+			Debug.LogWarning ("No Enemy Detected");
+			return;
+		}
+		*/
+
 	}
 }

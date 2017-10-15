@@ -76,3 +76,15 @@ MonoBehaviour:
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
+  - name: Jump
+    clip: {fileID: 8300000, guid: 225300c18f905e741aa4981f7464e70d, type: 3}
+    volume: 0.6
+    pitch: 2
+    loop: 0
+    source: {fileID: 0}
+  - name: Dash
+    clip: {fileID: 8300000, guid: 633fb9c661d7d1f46a42e6723400f98d, type: 3}
+    volume: 0.8
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}

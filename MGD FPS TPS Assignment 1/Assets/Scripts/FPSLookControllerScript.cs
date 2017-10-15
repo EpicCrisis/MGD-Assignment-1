@@ -34,6 +34,16 @@ public class FPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 	void LateUpdate ()
 	{
+		if (!GameSettings.instance.isPaused) {
+
+			CheckInput ();
+
+		}
+	}
+
+	void CheckInput ()
+	{
+
 		//rotate in y axis
 		yAxis.Rotate (Vector3.up * direction.normalized.x * Time.deltaTime * rotSpeed);
 
@@ -44,7 +54,6 @@ public class FPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 		xAxis.rotation = Quaternion.Lerp (xAxis.rotation, targetXRotation.rotation, Time.deltaTime * rotSpeed);
 
 	}
-
 
 	public void OnDrag (PointerEventData eventData)
 	{

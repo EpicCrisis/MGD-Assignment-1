@@ -21,15 +21,26 @@ public class FPSMoveControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 	void Update ()
 	{
-		direction = this.transform.position - initialPos;
-		direction.Normalize ();
+		if (!GameSettings.instance.isPaused) {
 
-		character.Translate (new Vector3 (direction.x, 0f, direction.y) * Time.deltaTime * moveSpeed);
+			CheckInput ();
+
+		}
 	}
 
 
 	void LateUpdate ()
 	{
+
+	}
+
+	void CheckInput ()
+	{
+
+		direction = this.transform.position - initialPos;
+		direction.Normalize ();
+
+		character.Translate (new Vector3 (direction.x, 0f, direction.y) * Time.deltaTime * moveSpeed);
 
 	}
 

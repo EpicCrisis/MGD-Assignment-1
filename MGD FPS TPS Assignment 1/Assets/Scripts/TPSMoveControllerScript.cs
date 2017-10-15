@@ -21,17 +21,28 @@ public class TPSMoveControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 	void Update ()
 	{
+		if (!GameSettings.instance.isPaused) {
+
+			CheckInput ();
+
+		}
+	}
+
+
+	void LateUpdate ()
+	{
+
+	}
+
+	void CheckInput ()
+	{
+
 		if (isDragging) {
 			direction = this.transform.position - initialPos;
 		}
 		direction.Normalize ();
 
 		character.Translate (new Vector3 (direction.x, 0f, direction.y) * Time.deltaTime * rotSpeed, Space.World);
-	}
-
-
-	void LateUpdate ()
-	{
 
 	}
 

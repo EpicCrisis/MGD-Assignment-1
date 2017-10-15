@@ -28,22 +28,30 @@ public class ThrowGrenadeScript : MonoBehaviour, IPointerDownHandler
 
 	void Update ()
 	{
-		ActivateGrenadeCooldown ();
+		if (!GameSettings.instance.isPaused) {
+
+			ActivateGrenadeCooldown ();
+
+		}
 	}
 
 	public void OnPointerDown (PointerEventData eventData)
 	{
-		if (!onCooldown) {
+		if (!GameSettings.instance.isPaused) {
 			
-			Debug.Log ("Throw Grenade");
-			GameObject grenadeGO = Instantiate (grenadeToSpawn, pointOfThrow.transform.position, pointOfThrow.rotation);
+			if (!onCooldown) {
+			
+				//Debug.Log ("Throw Grenade");
+				GameObject grenadeGO = Instantiate (grenadeToSpawn, pointOfThrow.transform.position, pointOfThrow.rotation);
 
-			grenadeGO.GetComponent<Rigidbody> ().AddForce (pointOfThrow.forward * throwForce);
+				grenadeGO.GetComponent<Rigidbody> ().AddForce (pointOfThrow.forward * throwForce);
 
-			onCooldown = true;
+				onCooldown = true;
 
-		} else {
-			return;
+			} else {
+				return;
+			}
+
 		}
 	}
 

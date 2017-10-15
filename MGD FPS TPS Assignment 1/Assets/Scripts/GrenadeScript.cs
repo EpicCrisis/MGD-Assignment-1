@@ -27,7 +27,11 @@ public class GrenadeScript : MonoBehaviour
 
 	void Update ()
 	{
-		CheckExplode ();
+		if (!GameSettings.instance.isPaused) {
+
+			CheckExplode ();
+
+		}
 	}
 
 	void CheckExplode ()
