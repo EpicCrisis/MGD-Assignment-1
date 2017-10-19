@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
 	public LayerMask Ground;
 
+	public GameObject dashEffects;
+	public GameObject jumpEffects;
+
 	CharacterController controller;
 
 	Vector3 velocity;
@@ -51,25 +54,45 @@ public class PlayerController : MonoBehaviour
 			//transform.rotation = Quaternion.Euler (transform.rotation.x, 0.0f, transform.rotation.z);
 			//velocity += Vector3.Scale (transform.forward, dashDistance * new Vector3 ((Mathf.Log (1f / (Time.deltaTime * damping.x + 1)) / -Time.deltaTime), 0f, (Mathf.Log (1f / (Time.deltaTime * damping.z + 1)) / -Time.deltaTime)));
 
+			GameObject dashGO = Instantiate (dashEffects, new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z), Quaternion.identity);
+			dashGO.transform.parent = gameObject.transform;
+
 			velocity += Vector3.forward + (dashDistance * new Vector3 (0f, 0f, (Mathf.Log (1f / (Time.deltaTime * damping.z + 1)) / -Time.deltaTime)));
+
+			Destroy (dashGO, 2.0f);
 
 		} else if (SwipeScript.instance.IsSwiping (_SwipeDirection.DOWN)) {
 
 			AudioManager.instance.Play ("Dash");
 
-			velocity += Vector3.forward - (dashDistance * new Vector3 (0f, 0f, (Mathf.Log (1f / (Time.deltaTime * damping.z + 1)) / -Time.deltaTime)));
+			GameObject dashGO = Instantiate (dashEffects, new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z), Quaternion.identity);
+			dashGO.transform.parent = gameObject.transform;
+
+			velocity += Vector3.forward + (dashDistance * new Vector3 (0f, 0f, -(Mathf.Log (1f / (Time.deltaTime * damping.z + 1)) / -Time.deltaTime)));
+
+			Destroy (dashGO, 2.0f);
 
 		} else if (SwipeScript.instance.IsSwiping (_SwipeDirection.LEFT)) {
 
 			AudioManager.instance.Play ("Dash");
 
-			velocity += Vector3.forward - (dashDistance * new Vector3 ((Mathf.Log (1f / (Time.deltaTime * damping.x + 1)) / -Time.deltaTime), 0f, 0f));
+			GameObject dashGO = Instantiate (dashEffects, new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z), Quaternion.identity);
+			dashGO.transform.parent = gameObject.transform;
+
+			velocity += Vector3.forward + (dashDistance * new Vector3 (-(Mathf.Log (1f / (Time.deltaTime * damping.x + 1)) / -Time.deltaTime), 0f, 0f));
+
+			Destroy (dashGO, 2.0f);
 
 		} else if (SwipeScript.instance.IsSwiping (_SwipeDirection.RIGHT)) {
 
 			AudioManager.instance.Play ("Dash");
 
+			GameObject dashGO = Instantiate (dashEffects, new Vector3 (transform.position.x, transform.position.y - 1f, transform.position.z), Quaternion.identity);
+			dashGO.transform.parent = gameObject.transform;
+
 			velocity += Vector3.forward + (dashDistance * new Vector3 ((Mathf.Log (1f / (Time.deltaTime * damping.x + 1)) / -Time.deltaTime), 0f, 0f));
+
+			Destroy (dashGO, 2.0f);
 
 		}
 	}
@@ -83,6 +106,10 @@ public class PlayerController : MonoBehaviour
 				AudioManager.instance.Play ("Jump");
 
 				velocity.y += Mathf.Sqrt (jumpHeight * -2f * gravity);
+
+				GameObject jumpGO = Instantiate (jumpEffects, transform.position, Quaternion.identity);
+
+				Destroy (jumpGO, 2.0f);
 
 			}
 		}

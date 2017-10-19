@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpHeight: 2
-  dashDistance: 3
+  dashDistance: 4
   groundDistance: 0.1
   gravity: -29.81
   isGrounded: 0
@@ -304,6 +304,10 @@ MonoBehaviour:
   Ground:
     serializedVersion: 2
     m_Bits: 256
+  dashEffects: {fileID: 1139215294653490, guid: c989f8e5e3ac8e847a2bc027807169e1,
+    type: 2}
+  jumpEffects: {fileID: 1416238625946738, guid: 32719d56c36a2424e8c178c1965d6cb2,
+    type: 2}
 --- !u!136 &136574337808828028
 CapsuleCollider:
   m_ObjectHideFlags: 1

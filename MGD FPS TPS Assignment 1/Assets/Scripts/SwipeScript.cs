@@ -6,10 +6,15 @@ public enum _SwipeDirection
 {
 	NONE = 0,
 
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT,
+	UP = 1,
+	DOWN = 2,
+	LEFT = 4,
+	RIGHT = 8,
+
+	//UPLEFT = 5,
+	//UPRIGHT = 9,
+	//DOWNLEFT = 6,
+	//DOWNRIGHT = 10,
 
 	TOTAL,
 }
@@ -74,14 +79,14 @@ public class SwipeScript : MonoBehaviour
 
 				//Swipe on the x-axis. //
 
-				Direction = (deltaSwipe.x < 0) ? _SwipeDirection.RIGHT : _SwipeDirection.LEFT;
+				Direction |= (deltaSwipe.x < 0) ? _SwipeDirection.RIGHT : _SwipeDirection.LEFT;
 
 			}
 			if (Mathf.Abs (deltaSwipe.y) > swipeThresholdY && totalSwipeTime < maxSwipeTime) {
 
 				//Swipe on the y-axis. //
 
-				Direction = (deltaSwipe.y < 0) ? _SwipeDirection.UP : _SwipeDirection.DOWN;
+				Direction |= (deltaSwipe.y < 0) ? _SwipeDirection.UP : _SwipeDirection.DOWN;
 
 			}
 		}
@@ -89,6 +94,7 @@ public class SwipeScript : MonoBehaviour
 
 	public bool IsSwiping (_SwipeDirection aDirection)
 	{
-		return (Direction) == aDirection;
+		//return (Direction) == aDirection;
+		return (Direction & aDirection) == aDirection;
 	}﻿
 }
