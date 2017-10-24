@@ -16,6 +16,11 @@ public class GunScript : MonoBehaviour
 	public float shootDelay = 1.0f;
 	float shootTimer = 0.0f;
 
+	bool shellFall = false;
+
+	public float shellDelay = 1.0f;
+	float shellTimer = 0.0f;
+
 	public ParticleSystem muzzle;
 	public GameObject bloodEffect;
 
@@ -29,6 +34,8 @@ public class GunScript : MonoBehaviour
 		if (!GameSettings.instance.isPaused) {
 
 			CheckEnemyTarget ();
+
+			CheckShell ();
 
 		}
 	}
@@ -59,6 +66,8 @@ public class GunScript : MonoBehaviour
 
 					FindObjectOfType<AudioManager> ().Play ("Gunshot");
 
+					shellFall = true;
+
 					target.TakeDamage (damage);
 
 					Destroy (bloodGO, 2.0f);
@@ -87,5 +96,23 @@ public class GunScript : MonoBehaviour
 		}
 		*/
 
+	}
+
+	void CheckShell ()
+	{
+		if (shellFall) {
+			
+			shellTimer += Time.deltaTime;
+
+			if (shellTimer >= shellDelay) {
+
+				shellTimer = 0f;
+
+				shellFall = false;
+
+				AudioManager.instance.Play ("Shell");
+
+			}
+		}
 	}
 }

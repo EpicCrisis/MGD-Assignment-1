@@ -88,3 +88,15 @@ MonoBehaviour:
     pitch: 1.5
     loop: 0
     source: {fileID: 0}
+  - name: MP5
+    clip: {fileID: 8300000, guid: 974c727903f381c4f9857785ddaa3b46, type: 3}
+    volume: 0.8
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
+  - name: Shell
+    clip: {fileID: 8300000, guid: 5bb4c5f2575188f4fa825550bd3cfa85, type: 3}
+    volume: 0.8
+    pitch: 1.5
+    loop: 0
+    source: {fileID: 0}
