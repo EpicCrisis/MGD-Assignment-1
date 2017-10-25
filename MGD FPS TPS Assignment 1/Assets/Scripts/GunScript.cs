@@ -24,6 +24,16 @@ public class GunScript : MonoBehaviour
 	public ParticleSystem muzzle;
 	public GameObject bloodEffect;
 
+	public int totalBullets = 8;
+	public int currentBullets = 8;
+
+	bool toReload = false;
+
+	public float reloadTime = 1.5f;
+	float reloadCounter = 0.0f;
+
+	bool doOnce = false;
+
 	void Start ()
 	{
 		
@@ -37,6 +47,8 @@ public class GunScript : MonoBehaviour
 
 			CheckShell ();
 
+			CheckReload ();
+
 		}
 	}
 
@@ -48,7 +60,7 @@ public class GunScript : MonoBehaviour
 
 			TargetScript target = hit.transform.GetComponent<TargetScript> (); // Will store info when object with this script is hit.//
 
-			if (target != null) {
+			if (target != null && !toReload) {
 
 				shootTimer += Time.deltaTime;
 
@@ -71,6 +83,8 @@ public class GunScript : MonoBehaviour
 					target.TakeDamage (damage);
 
 					Destroy (bloodGO, 2.0f);
+
+					currentBullets -= 1;
 				}
 			} else {
 				
@@ -113,6 +127,37 @@ public class GunScript : MonoBehaviour
 				AudioManager.instance.Play ("Shell");
 
 			}
+		}
+	}
+
+	void CheckReload ()
+	{
+		if (currentBullets <= 0) {
+
+			toReload = true;
+
+			reloadCounter += Time.deltaTime;
+
+			if (!doOnce) {
+
+				AudioManager.instance.Play ("Reload2");
+
+				doOnce = true;
+
+			}
+
+		}
+
+		if (reloadCounter >= reloadTime) {
+
+			toReload = false;
+
+			reloadCounter = 0f;
+
+			currentBullets = totalBullets;
+
+			doOnce = false;
+
 		}
 	}
 }

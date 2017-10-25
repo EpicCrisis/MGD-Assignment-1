@@ -715,11 +715,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   rotSpeed: 30
-  bulletHole: {fileID: 0}
-  toShoot: 0
+  bulletHole1: {fileID: 0}
+  bulletHole2: {fileID: 0}
   shootRate: 0.1
-  shootCounter: 0
   muzzle: {fileID: 0}
+  totalBullets: 36
+  currentBullets: 36
+  reloadTime: 3
 --- !u!114 &114279824035049308
 MonoBehaviour:
   m_ObjectHideFlags: 1

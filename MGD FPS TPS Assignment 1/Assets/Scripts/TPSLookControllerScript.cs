@@ -12,14 +12,26 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 	public float rotSpeed = 3f;
 	bool isDragging = false;
 
-	public Transform bulletHole;
+	public Transform bulletHole1;
+	public Transform bulletHole2;
 
 	bool toShoot = false;
 
 	public float shootRate = 1f;
 	float shootCounter = 0f;
 
-	public ParticleSystem muzzle;
+	public ParticleSystem muzzle1;
+	public ParticleSystem muzzle2;
+
+	public int totalBullets = 36;
+	public int currentBullets = 36;
+
+	bool toReload = false;
+
+	public float reloadTime = 2.0f;
+	float reloadCounter = 0.0f;
+
+	bool doOnce = false;
 
 	void Start ()
 	{
@@ -35,6 +47,7 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 			CheckShoot ();
 
+			CheckReload ();
 		}
 	}
 
@@ -74,21 +87,57 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 	public void CheckShoot ()
 	{
-		if (toShoot) {
+		if (toShoot && !toReload) {
 
 			shootCounter += Time.deltaTime;
 
 			if (shootCounter >= shootRate) {
 
-				muzzle.Play ();
+				muzzle1.Play ();
+
+				muzzle2.Play ();
 
 				AudioManager.instance.Play ("MP5");
 
-				CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole.position, bulletHole.rotation);
+				CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole1.position, bulletHole1.rotation);
+
+				CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole2.position, bulletHole2.rotation);
 
 				shootCounter = 0f;
 
+				currentBullets -= 1;
+
 			}
+		}
+	}
+
+	public void CheckReload ()
+	{
+		if (currentBullets <= 0) {
+
+			toReload = true;
+
+			reloadCounter += Time.deltaTime;
+
+			if (!doOnce) {
+				
+				AudioManager.instance.Play ("Reload1");
+
+				doOnce = true;
+
+			}
+
+		}
+		if (reloadCounter >= reloadTime) {
+
+			toReload = false;
+
+			reloadCounter = 0f;
+
+			currentBullets = totalBullets;
+
+			doOnce = false;
+
 		}
 	}
 
