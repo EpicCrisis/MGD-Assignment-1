@@ -112,3 +112,15 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Hit1
+    clip: {fileID: 8300000, guid: adffc3e9b737d7e449c217d71c6f4607, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Hit2
+    clip: {fileID: 8300000, guid: 315e3b0b31fbcd54ea671202a6922769, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

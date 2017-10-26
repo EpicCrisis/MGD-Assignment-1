@@ -10,9 +10,15 @@ public class BulletScript : MonoBehaviour
 	public float lifeTime = 10f;
 	float lifeTimeCounter = 0f;
 
+	public float bulletDamage = 10f;
+
+	public GameObject bloodEffect;
+
+	Rigidbody rb;
+
 	void Start ()
 	{
-		
+		rb = GetComponent<Rigidbody> ();
 	}
 
 	void Update ()
@@ -29,7 +35,9 @@ public class BulletScript : MonoBehaviour
 
 		lifeTimeCounter += Time.deltaTime;
 
-		transform.position += transform.up * bulletSpeed;
+		//transform.position += transform.up * bulletSpeed;
+
+		rb.velocity = transform.up * bulletSpeed;
 
 		//transform.Translate (Vector3.forward * bulletSpeed * Time.deltaTime, Space.Self);
 
@@ -44,8 +52,23 @@ public class BulletScript : MonoBehaviour
 		}
 	}
 
-	void OnTriggerStay (Collider other)
+	void OnTriggerEnter (Collider other)
 	{
+		if (other.gameObject.tag == "Zombie") {
+
+			AudioManager.instance.Play ("Hit2");
+
+			other.GetComponent<ZombieScript> ().TakeDamage (bulletDamage);
+
+			lifeTimeCounter = 0f;
+
+			CustomObjectPoolScript.Instance.Despawn (gameObject);
+
+			GameObject bloodGO = Instantiate (bloodEffect, other.gameObject.transform.position, other.gameObject.transform.rotation);
+
+			Destroy (bloodGO, 2.0f);
+
+		}
 
 		if (other.gameObject.layer == 8) {
 

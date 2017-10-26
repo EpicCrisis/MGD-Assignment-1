@@ -24,9 +24,10 @@ GameObject:
   - component: {fileID: 23887187562107750}
   - component: {fileID: 143231322562671928}
   - component: {fileID: 114082830461597374}
+  - component: {fileID: 114004624119567330}
   m_Layer: 0
   m_Name: MainTPSCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -701,6 +702,18 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114004624119567330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1064767223621718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be8ba00f1f938540ac70ebb4bf8b90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 100
 --- !u!114 &114082830461597374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -712,11 +725,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e487009f57b524f965f69f38929ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 2
+  jumpHeight: 1.5
   dashDistance: 4
   groundDistance: 0.1
   gravity: -29.81
-  isGrounded: 0
+  isGrounded: 1
   damping: {x: 8, y: 0, z: 8}
   groundChecker: {fileID: 4928721486918424}
   Ground:
