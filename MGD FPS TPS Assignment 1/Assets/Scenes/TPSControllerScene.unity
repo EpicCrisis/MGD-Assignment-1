@@ -2606,6 +2606,11 @@ Prefab:
       propertyPath: numberOfObjectsToPool.Array.data[3]
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 114412494294798430, guid: 29b1aa90628bad646baaa4fd213ead04,
+        type: 2}
+      propertyPath: numberOfObjectsToPool.Array.data[0]
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29b1aa90628bad646baaa4fd213ead04, type: 2}
   m_IsPrefabParent: 0

@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 30
-  lifeTime: 5
+  lifeTime: 3
   bulletDamage: 10
   bloodEffect: {fileID: 1293585125675946, guid: 18ac1e7d3a054864e8d606d4e1014a62,
     type: 2}

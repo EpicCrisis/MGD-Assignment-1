@@ -14,6 +14,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 7b848b7feaa524953d09fc1851efa6da UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 7b848b7feaa524953d09fc1851efa6da UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 c24a21b131bfa67be1162db2cba4b52b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+bb52c34b35ba765a3a03ec7e1dd2a27a Assembly-CSharp.dll:.PistolAmmoBoxScript
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 49cd62a578efc0a599b810a2b66cd49c UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -122,6 +123,7 @@ a5107e16ddd112ab59da3178012373eb Assembly-CSharp.dll:.CustomObjectPoolScript
 4037dec9ebbd5016b7ce8cd84ba0dd5d Assembly-CSharp.dll:.ZombieAttackScript
 a6a0a97e144734cff01824aee0316105 Assembly-CSharp.dll:.MainMenuManager
 7d6e461d4d39336e89425d6dafd3e4ef Assembly-CSharp.dll:.ItemSpawnScript
+7d6e461d4d39336e89425d6dafd3e4ef Assembly-CSharp.dll:.ItemSpawnFPSScript
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -156,5 +158,3 @@ bb52c34b35ba765a3a03ec7e1dd2a27a Assembly-CSharp.dll:.AmmoBoxScript
 b1ee91717bb04c223e3b57e925d8d1d2 Assembly-CSharp.dll:.GrenadeScript
 b2ba90c27e3deb7ed869cce04e647c41 Assembly-CSharp.dll:.AudioManager
 20bbcf02a9d607f6cf394e7ea8e71c74 Assembly-CSharp.dll:.GameSettings
-bb52c34b35ba765a3a03ec7e1dd2a27a Assembly-CSharp.dll:.PistolAmmoBoxScript
-7d6e461d4d39336e89425d6dafd3e4ef Assembly-CSharp.dll:.ItemSpawnFPSScript
