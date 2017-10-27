@@ -54,4 +54,4 @@ MonoBehaviour:
   objectsToPool:
   - {fileID: 1079496924418124, guid: 26fd25ae83e457341ab302061928b1d6, type: 2}
   - {fileID: 1144587311946824, guid: e0629327316ee1346813492086f3fcbd, type: 2}
-  numberOfObjectsToPool: 6400000064000000
+  numberOfObjectsToPool: 6400000032000000

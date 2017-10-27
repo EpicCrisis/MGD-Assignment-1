@@ -63,6 +63,8 @@ public class GrenadeScript : MonoBehaviour
 
 			TargetScript target = hit.GetComponent<TargetScript> ();
 
+			RayZombieScript rayZombie = hit.GetComponent<RayZombieScript> ();
+
 			if (rb != null) {
 				rb.AddExplosionForce (power, explosionPosition, radius, upForce, ForceMode.Impulse);
 			}
@@ -70,8 +72,11 @@ public class GrenadeScript : MonoBehaviour
 			if (target != null) {
 				target.TakeDamage (explodeDamage);
 			}
-		}
 
+			if (rayZombie != null) {
+				rayZombie.TakeDamage (explodeDamage);
+			}
+		}
 
 		Destroy (gameObject);
 

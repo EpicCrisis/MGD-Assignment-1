@@ -3,9 +3,6 @@ using System.Collections;
 
 public class ZombieAttackScript : MonoBehaviour
 {
-
-	public static ZombieAttackScript instance;
-
 	public float attackSpeed = 2f;
 	float attackSpeedCounter = 0f;
 
@@ -39,7 +36,7 @@ public class ZombieAttackScript : MonoBehaviour
 
 				GameObject bloodGO = Instantiate (bloodEffect, player.gameObject.transform.position, player.gameObject.transform.rotation);
 
-				//player.TakeDamage (attackDamage);
+				player.TakeDamage (attackDamage);
 
 				attackSpeedCounter = 0f;
 
@@ -63,6 +60,8 @@ public class ZombieAttackScript : MonoBehaviour
 	void OnTriggerExit (Collider other)
 	{
 		if (other.gameObject.tag == "Player") {
+
+			attackSpeedCounter = 0f;
 
 			isAttacking = false;
 

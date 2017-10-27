@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -23,8 +24,10 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 	public ParticleSystem muzzle1;
 	public ParticleSystem muzzle2;
 
-	public int totalBullets = 36;
-	public int currentBullets = 36;
+	public int totalBullets = 64;
+	public int clipBullets = 64;
+	public int currentBullets = 64;
+	public int usedBullets = 2;
 
 	bool toReload = false;
 
@@ -33,9 +36,13 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 	bool doOnce = false;
 
+	public Text ammoTextUI;
+
 	void Start ()
 	{
 		initialPos = this.transform.position; //set initial position
+
+		CheckPlayerAmmo ();
 	}
 
 
@@ -93,19 +100,32 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 			if (shootCounter >= shootRate) {
 
-				muzzle1.Play ();
-
-				muzzle2.Play ();
-
 				AudioManager.instance.Play ("MP5");
-
-				CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole1.position, bulletHole1.rotation);
-
-				CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole2.position, bulletHole2.rotation);
 
 				shootCounter = 0f;
 
-				currentBullets -= 1;
+				if (currentBullets >= usedBullets) {
+					
+					currentBullets -= usedBullets;
+
+					muzzle1.Play ();
+
+					muzzle2.Play ();
+
+					CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole1.position, bulletHole1.rotation);
+
+					CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole2.position, bulletHole2.rotation);
+
+				} else {
+
+					muzzle1.Play ();
+
+					CustomObjectPoolScript.Instance.Spawn ("Bullet", bulletHole1.position, bulletHole1.rotation);
+
+					currentBullets -= usedBullets / 2;
+				}
+
+				CheckPlayerAmmo ();
 
 			}
 		}
@@ -117,16 +137,18 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 			toReload = true;
 
-			reloadCounter += Time.deltaTime;
+			if (totalBullets >= 1) {
 
-			if (!doOnce) {
+				reloadCounter += Time.deltaTime;
+
+				if (!doOnce) {
 				
-				AudioManager.instance.Play ("Reload1");
+					AudioManager.instance.Play ("Reload1");
 
-				doOnce = true;
+					doOnce = true;
 
+				}
 			}
-
 		}
 		if (reloadCounter >= reloadTime) {
 
@@ -134,9 +156,21 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 
 			reloadCounter = 0f;
 
-			currentBullets = totalBullets;
+			if (totalBullets >= clipBullets) {
 
+				currentBullets += clipBullets;
+				
+				totalBullets -= clipBullets;
+
+			} else {
+				
+				currentBullets += totalBullets;
+
+				totalBullets -= totalBullets;
+			}
 			doOnce = false;
+
+			CheckPlayerAmmo ();
 
 		}
 	}
@@ -149,5 +183,10 @@ public class TPSLookControllerScript : MonoBehaviour, IDragHandler, IEndDragHand
 	public void OnPointerUp (PointerEventData eventData)
 	{
 		toShoot = false;
+	}
+
+	public void CheckPlayerAmmo ()
+	{
+		ammoTextUI.text = "AMMO: " + currentBullets + "/" + totalBullets;
 	}
 }

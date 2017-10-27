@@ -21,7 +21,7 @@ public class CustomObjectPoolScript : MonoBehaviour
 			Destroy (this.gameObject);
 		}
 
-		DontDestroyOnLoad (this.gameObject);
+		//DontDestroyOnLoad (this.gameObject);
 	}
 
 	public List<GameObject> objectsToPool;
@@ -74,6 +74,7 @@ public class CustomObjectPoolScript : MonoBehaviour
 			go.SetActive (true);
 		} else {
 			Debug.LogWarning ("Pool Limit Reached : " + objectName);
+			return;
 		}
 	}
 

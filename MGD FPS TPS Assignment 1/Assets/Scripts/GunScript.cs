@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunScript : MonoBehaviour
 {
@@ -24,8 +25,10 @@ public class GunScript : MonoBehaviour
 	public ParticleSystem muzzle;
 	public GameObject bloodEffect;
 
-	public int totalBullets = 8;
+	public int totalBullets = 32;
+	public int clipBullets = 8;
 	public int currentBullets = 8;
+	public int usedBullets = 1;
 
 	bool toReload = false;
 
@@ -34,9 +37,11 @@ public class GunScript : MonoBehaviour
 
 	bool doOnce = false;
 
+	public Text ammoTextUI;
+
 	void Start ()
 	{
-		
+		CheckPlayerAmmo ();
 	}
 
 	void Update ()
@@ -58,40 +63,82 @@ public class GunScript : MonoBehaviour
 			
 //			Debug.Log (hit.transform.name);
 
-			TargetScript target = hit.transform.GetComponent<TargetScript> (); // Will store info when object with this script is hit.//
+			if (hit.transform.tag == "Target") {
+				
+				TargetScript target = hit.transform.GetComponent<TargetScript> (); // Will store info when object with this script is hit.//
 
-			if (target != null && !toReload) {
+				if (target != null && !toReload) {
 
-				shootTimer += Time.deltaTime;
+					shootTimer += Time.deltaTime;
 
-				if (shootTimer >= shootDelay) {
+					if (shootTimer >= shootDelay) {
+
+						shootTimer = 0.0f;
+
+						if (hit.rigidbody != null) {
+							hit.rigidbody.AddForce (-hit.normal * impactForce);
+						}
+
+						GameObject bloodGO = Instantiate (bloodEffect, hit.point, Quaternion.LookRotation (hit.normal));
+
+						muzzle.Play ();
+
+						FindObjectOfType<AudioManager> ().Play ("Gunshot");
+
+						shellFall = true;
+
+						target.TakeDamage (damage);
+
+						Destroy (bloodGO, 2.0f);
+
+						currentBullets -= usedBullets;
+
+						CheckPlayerAmmo ();
+					}
+				} else {
 
 					shootTimer = 0.0f;
 
-					if (hit.rigidbody != null) {
-						hit.rigidbody.AddForce (-hit.normal * impactForce);
-					}
-
-					GameObject bloodGO = Instantiate (bloodEffect, hit.point, Quaternion.LookRotation (hit.normal));
-
-					muzzle.Play ();
-
-					FindObjectOfType<AudioManager> ().Play ("Gunshot");
-
-					shellFall = true;
-
-					target.TakeDamage (damage);
-
-					Destroy (bloodGO, 2.0f);
-
-					currentBullets -= 1;
 				}
-			} else {
+
+			} else if (hit.transform.tag == "Zombie") {
 				
-				shootTimer = 0.0f;
+				RayZombieScript target = hit.transform.GetComponent<RayZombieScript> ();
 
+				if (target != null && !toReload) {
+
+					shootTimer += Time.deltaTime;
+
+					if (shootTimer >= shootDelay) {
+
+						shootTimer = 0.0f;
+
+						if (hit.rigidbody != null) {
+							hit.rigidbody.AddForce (-hit.normal * impactForce);
+						}
+
+						GameObject bloodGO = Instantiate (bloodEffect, hit.point, Quaternion.LookRotation (hit.normal));
+
+						muzzle.Play ();
+
+						FindObjectOfType<AudioManager> ().Play ("Gunshot");
+
+						shellFall = true;
+
+						target.TakeDamage (damage);
+
+						Destroy (bloodGO, 2.0f);
+
+						currentBullets -= usedBullets;
+
+						CheckPlayerAmmo ();
+					}
+				} else {
+
+					shootTimer = 0.0f;
+
+				}
 			}
-
 		} else {
 			
 			//Debug.LogWarning ("Nothing");
@@ -136,13 +183,17 @@ public class GunScript : MonoBehaviour
 
 			toReload = true;
 
-			reloadCounter += Time.deltaTime;
+			if (totalBullets >= 1) {
 
-			if (!doOnce) {
+				reloadCounter += Time.deltaTime;
 
-				AudioManager.instance.Play ("Reload2");
+				if (!doOnce) {
 
-				doOnce = true;
+					AudioManager.instance.Play ("Reload2");
+
+					doOnce = true;
+
+				}
 
 			}
 
@@ -154,10 +205,26 @@ public class GunScript : MonoBehaviour
 
 			reloadCounter = 0f;
 
-			currentBullets = totalBullets;
+			if (totalBullets >= clipBullets) {
+
+				currentBullets += clipBullets;
+
+				totalBullets -= clipBullets;
+
+			} else {
+
+				currentBullets += totalBullets;
+
+				totalBullets -= totalBullets;
+			}
 
 			doOnce = false;
 
 		}
+	}
+
+	public void CheckPlayerAmmo ()
+	{
+		ammoTextUI.text = "AMMO: " + currentBullets + "/" + totalBullets;
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ZombieScript : MonoBehaviour
 {
-	float moveSpeed = 1f;
+	//float moveSpeed = 1f;
 
 	public float zombieHealth = 50f;
 	float tempHealth = 0f;
@@ -38,7 +38,6 @@ public class ZombieScript : MonoBehaviour
 			player = FindObjectOfType<PlayerScript> ();
 
 			LookAtPlayer ();
-
 		}
 	}
 
@@ -65,7 +64,7 @@ public class ZombieScript : MonoBehaviour
 
 			if (!zombieAttack.isAttacking) {
 
-				transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
+				//transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
 
 			} else {
 
@@ -89,6 +88,8 @@ public class ZombieScript : MonoBehaviour
 	void Die ()
 	{
 		FindObjectOfType<AudioManager> ().Play ("BloodEffect");
+
+		AudioManager.instance.Play ("ZombieDeath");
 
 		CustomObjectPoolScript.Instance.Despawn (gameObject);
 

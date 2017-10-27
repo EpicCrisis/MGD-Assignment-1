@@ -114,13 +114,37 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Hit1
     clip: {fileID: 8300000, guid: adffc3e9b737d7e449c217d71c6f4607, type: 3}
-    volume: 1
+    volume: 0.8
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Hit2
     clip: {fileID: 8300000, guid: 315e3b0b31fbcd54ea671202a6922769, type: 3}
-    volume: 1
+    volume: 0.6
+    pitch: 3
+    loop: 0
+    source: {fileID: 0}
+  - name: ManDeath
+    clip: {fileID: 8300000, guid: 0a5a1da1ccd2df84a976ff660ebad2ce, type: 3}
+    volume: 0.8
+    pitch: 1.2
+    loop: 0
+    source: {fileID: 0}
+  - name: ZombieDeath
+    clip: {fileID: 8300000, guid: 0a5a1da1ccd2df84a976ff660ebad2ce, type: 3}
+    volume: 0.8
+    pitch: 0.8
+    loop: 0
+    source: {fileID: 0}
+  - name: Heal
+    clip: {fileID: 8300000, guid: 43d74755cd2b49c4193a82eb3cae3a09, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Ammo
+    clip: {fileID: 8300000, guid: 3fd50c16723038b46b37efaa97e4610d, type: 3}
+    volume: 0.6
     pitch: 1
     loop: 0
     source: {fileID: 0}

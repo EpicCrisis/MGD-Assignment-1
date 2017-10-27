@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33151160214499278}
   - component: {fileID: 136672613449211078}
   - component: {fileID: 23406134333668502}
-  - component: {fileID: 114888347192536530}
   - component: {fileID: 195175287542732434}
-  m_Layer: 0
+  - component: {fileID: 114888347192536530}
+  m_Layer: 9
   m_Name: Zombie
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 4741148205367184}
   - component: {fileID: 65322630827650012}
   - component: {fileID: 114762857003866018}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: AttackBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 33064761537130242}
   - component: {fileID: 136983014639021820}
   - component: {fileID: 23392827096162364}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arm.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 33275680916313262}
   - component: {fileID: 136309019125843528}
   - component: {fileID: 23782574484431022}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Arm.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa00770867c06e34f88fa578f5fa9d2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 2
+  attackSpeed: 1.5
   attackDamage: 10
   bloodEffect: {fileID: 1293585125675946, guid: 18ac1e7d3a054864e8d606d4e1014a62,
     type: 2}
@@ -295,7 +295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f85b3747c464c429c0d71cb8b2fb7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
   zombieHealth: 50
 --- !u!136 &136309019125843528
 CapsuleCollider:
@@ -317,7 +316,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1144587311946824}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -349,7 +348,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 2
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1

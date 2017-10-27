@@ -28,6 +28,15 @@ public class MainMenuManager : MonoBehaviour
 		SceneManager.LoadScene (levels [level]);
 	}
 
+	public void RestartScene ()
+	{
+		Scene loadedLevel = SceneManager.GetActiveScene ();
+
+		SceneManager.LoadScene (loadedLevel.buildIndex);
+
+		GameSettings.instance.PauseGame (false);
+	}
+
 	//Finds the menu enum in the public list, then proceed to set active.//
 
 	public void OpenMenu (int menu)
