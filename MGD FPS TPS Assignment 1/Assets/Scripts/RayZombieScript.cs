@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class RayZombieScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class RayZombieScript : MonoBehaviour
 
 	public float zombieHealth = 50f;
 	float tempHealth = 0f;
+
+	public int scoreGain = 10;
 
 	PlayerScript player;
 
@@ -25,6 +28,8 @@ public class RayZombieScript : MonoBehaviour
 	float rayAttackSpeedCounter = 0f;
 
 	public bool isAttacking = false;
+
+	public Text scoreUIText;
 
 	void Start ()
 	{
@@ -101,6 +106,8 @@ public class RayZombieScript : MonoBehaviour
 		FindObjectOfType<AudioManager> ().Play ("BloodEffect");
 
 		AudioManager.instance.Play ("ZombieDeath");
+
+		player.CheckPlayerScore (scoreGain);
 
 		CustomObjectPoolScript.Instance.Despawn (gameObject);
 

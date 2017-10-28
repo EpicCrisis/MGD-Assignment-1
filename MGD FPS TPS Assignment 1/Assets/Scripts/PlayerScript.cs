@@ -13,6 +13,9 @@ public class PlayerScript : MonoBehaviour
 	public GameObject restartPanel;
 
 	public Text healthTextUI;
+	public Text scoreTextUI;
+
+	public int totalScore = 0;
 
 	void Start ()
 	{
@@ -21,6 +24,8 @@ public class PlayerScript : MonoBehaviour
 		tempHealth = playerHealth;
 
 		CheckPlayerHealth ();
+
+		CheckPlayerScore (0);
 	}
 
 	void Update ()
@@ -68,5 +73,10 @@ public class PlayerScript : MonoBehaviour
 		}
 
 		healthTextUI.text = "HEALTH: " + tempHealth.ToString ();
+	}
+
+	public void CheckPlayerScore (int amount)
+	{
+		scoreTextUI.text = "SCORE: " + (totalScore += amount).ToString ();
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class ZombieScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ZombieScript : MonoBehaviour
 
 	public float zombieHealth = 50f;
 	float tempHealth = 0f;
+
+	public int scoreGain = 10;
 
 	PlayerScript player;
 
@@ -90,6 +93,8 @@ public class ZombieScript : MonoBehaviour
 		FindObjectOfType<AudioManager> ().Play ("BloodEffect");
 
 		AudioManager.instance.Play ("ZombieDeath");
+
+		player.CheckPlayerScore (scoreGain);
 
 		CustomObjectPoolScript.Instance.Despawn (gameObject);
 
